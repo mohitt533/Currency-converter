@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.neo.convert.model.internal.ExchangeRates;
 import com.neo.convert.model.response.*;
+import com.neo.convert.service.BestExchangeRateService;
 import com.neo.convert.service.ExchageRateListService;
 
 @RestController
 public class CurrencyController {
 	
 	@Autowired
-	ExchageRateListService exchageRateListService;
+	BestExchangeRateService bestExchangeRateService;
 	
 	@GetMapping("/")
 	public List<ExchangeResponse> getExchangeRate() {
@@ -24,7 +25,7 @@ public class CurrencyController {
 	}
 	
 	@GetMapping("/exchange")
-	public List<ExchangeRates> getExchangeRateList() {
-		return exchageRateListService.getExchangeRateList();
+	public List<ExchangeResponse> getExchangeRateList() {
+		return bestExchangeRateService.getBestExchangeRate();
 	}
 }
